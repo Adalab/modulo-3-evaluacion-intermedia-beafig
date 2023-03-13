@@ -7,7 +7,7 @@ import callToApi from '../services/api';
 // - Sass
 import '../styles/App.scss';
 // - Imágenes
-
+import friends from '../images/friends.png'
 /* SECCIÓN DEL COMPONENTE */
 function App() {
   /* VARIABLES ESTADO (DATOS) */
@@ -63,7 +63,7 @@ function App() {
           return eachPhrase.character.includes(inputCharacter)
         }
       })
-      .map((eachPhrase, index) => <li key={index}>
+      .map((eachPhrase, index) => <li key={index} className="main__list--each">
         <p>{eachPhrase.quote}</p>
         <p>{eachPhrase.character}</p>
       </li>)
@@ -72,15 +72,16 @@ function App() {
   /* HTML */
   return <div className="App">
     <header className="header">
-      <h1 className='header__title'>Phrases of Friends</h1>
+      <h1 className='header__title'>Quotes of</h1>
+      <img className='header__img' src={friends} alt="logo sofa friends" />
     </header>
     <main className="main">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="searchPhrase"> Filter by phrase:
-          <input type="text" id="searchPhrase" name="searchPhrase" placeholder="Ex: smelly cat" onChange={handleInputPhrase} value={inputPhrase} />
+      <form onSubmit={handleSubmit} className="main__form">
+        <label htmlFor="searchPhrase" className="main__form--label" > Filter by phrase:
+          <input type="text" id="searchPhrase" name="searchPhrase" placeholder="Ex: smelly cat" onChange={handleInputPhrase} value={inputPhrase} className="main__form--input" />
         </label>
-        <label htmlFor="searchName"> Filter by character:
-          <select name="searchName" id="searchName" onChange={handleInputCharacter} value={inputCharacter}>
+        <label htmlFor="searchName" className="main__form--label"> Filter by character:
+          <select name="searchName" id="searchName" onChange={handleInputCharacter} value={inputCharacter} className="main__form--input">
             <option value="All"> All characters</option>
             <option value="Ross">Ross</option>
             <option value="Rachel">Rachel</option>
@@ -91,16 +92,16 @@ function App() {
           </select>
         </label>
       </form>
-      <ul>{renderPhrases()}</ul>
-      <form onSubmit={handleSubmit}>
-        <h2>Add a new phrase</h2>
-        <label htmlFor="quote"> Phrase:
-          <input type="text" id="quote" name="quote" value={addPhrase.quote} onChange={handleInputAdd} />
+      <ul className='main__list'>{renderPhrases()}</ul>
+      <form onSubmit={handleSubmit} className="main__form">
+        <h2 className="main__form--title">Add a new phrase</h2>
+        <label htmlFor="quote" className="main__form--label"> Phrase:
+          <input type="text" id="quote" name="quote" value={addPhrase.quote} onChange={handleInputAdd} className="main__form--input" />
         </label>
-        <label htmlFor="character"> Character:
-          <input type="text" id="character" name="character" value={addPhrase.character} onChange={handleInputAdd} />
+        <label htmlFor="character" className="main__form--label"> Character:
+          <input type="text" id="character" name="character" value={addPhrase.character} onChange={handleInputAdd} className="main__form--input" />
         </label>
-        <input type="button" value="Click to add" onClick={handleClick} />
+        <input type="button" value="Click to add" onClick={handleClick} className="main__form--btn" />
       </form>
     </main>
   </div>;
