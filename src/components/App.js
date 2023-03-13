@@ -1,16 +1,9 @@
-/* SECCIÓN DE IMPORT */
-
-// - De React
 import { useEffect, useState } from 'react';
 import callToApi from '../services/api';
-// - Nuestros
-// - Sass
 import '../styles/App.scss';
-// - Imágenes
 import friends from '../images/friends.png'
-/* SECCIÓN DEL COMPONENTE */
+
 function App() {
-  /* VARIABLES ESTADO (DATOS) */
   const [dataList, setDataList] = useState([])
   const [inputPhrase, setInputPhrase] = useState('');
   const [inputCharacter, setInputCharacter] = useState('');
