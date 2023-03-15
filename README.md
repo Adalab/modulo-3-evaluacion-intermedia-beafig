@@ -1,6 +1,6 @@
 # Quotes of Friends
 
-##Ejercicio de evaluación intermedia modulo 3 (React)
+Ejercicio de evaluación intermedia modulo 3 (React)
 
 ¡Hola 👋🏽!
 
