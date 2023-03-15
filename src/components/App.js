@@ -11,16 +11,17 @@ function App() {
     quote: '',
     character: ''
   })
+  const [errorMsg, setErrorMsg] = useState('')
 
-  /* EFECTOS (día 5) */
+
+  // let errorMsg = '';
+
   useEffect(() => {
     callToApi().then(response => {
-      console.log(response);
       setDataList(response)
     })
-  }, [inputPhrase, inputCharacter])
+  }, [])
 
-  /* FUNCIONES HANDLER */
   const handleSubmit = (ev) => {
     ev.preventDefault();
   };
@@ -38,14 +39,18 @@ function App() {
   }
 
   const handleClick = () => {
-    setDataList([...dataList, addPhrase])
-    setAddPhrase({
-      quote: "",
-      character: ""
-    })
+    if (addPhrase.quote !== '' && addPhrase.character !== '') {
+      setDataList([...dataList, addPhrase])
+      setAddPhrase({
+        quote: "",
+        character: ""
+      })
+      setErrorMsg('')
+    } else {
+      setErrorMsg(<p className="main__form--errorMsg">Por favor rellena los 2 campos, escribe una frase y su autor</p >)
+    }
   }
 
-  /* FUNCIONES Y VARIABLES AUXILIARES PARA PINTAR EL HTML */
   const renderPhrases = () => {
     return (dataList
       .filter(eachPhrase => eachPhrase.quote.toLocaleLowerCase().includes(inputPhrase.toLocaleLowerCase()))
@@ -58,11 +63,11 @@ function App() {
       })
       .map((eachPhrase, index) => <li key={index} className="main__list--each">
         <p>{eachPhrase.quote}</p>
-        <p>{eachPhrase.character}</p>
+        <p className="main__list--eachCharacter"> - {eachPhrase.character}</p>
       </li>)
     )
   }
-  /* HTML */
+
   return <div className="App">
     <header className="header">
       <h1 className='header__title'>Quotes of</h1>
@@ -95,12 +100,10 @@ function App() {
           <input type="text" id="character" name="character" value={addPhrase.character} onChange={handleInputAdd} className="main__form--input" />
         </label>
         <input type="button" value="Click to add" onClick={handleClick} className="main__form--btn" />
+        {errorMsg}
       </form>
     </main>
   </div>;
 }
 
-/* PROP-TYPES */
-
-/* EXPORT DEL COMPONENTE */
 export default App;

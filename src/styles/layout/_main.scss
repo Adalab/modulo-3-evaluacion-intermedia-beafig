@@ -24,10 +24,16 @@
       margin: 5px 0 5px 65px;
       background-color: #9973b2;
     }
+    &--errorMsg {
+      margin: 5px;
+    }
   }
   &__list {
     &--each {
       margin: 10px 0;
+    }
+    &--eachCharacter {
+      color: #9973b2;
     }
   }
 }
